@@ -7,6 +7,7 @@ import traceback
 import weakref
 import paramiko
 import tornado.web
+import os
 
 from concurrent.futures import ThreadPoolExecutor
 from tornado.ioloop import IOLoop
@@ -362,20 +363,22 @@ class IndexHandler(MixinHandler, tornado.web.RequestHandler):
         return value, filename
 
     def get_hostname(self):
-        value = self.get_value('hostname')
-        if not (is_valid_hostname(value) or is_valid_ip_address(value)):
-            raise InvalidValueError('Invalid hostname: {}'.format(value))
-        return value
+        return os.environ.get("SSH_HOST", "localhost")
+        # value = self.get_value('hostname')
+        # if not (is_valid_hostname(value) or is_valid_ip_address(value)):
+            # raise InvalidValueError('Invalid hostname: {}'.format(value))
+        # return value
 
     def get_port(self):
-        value = self.get_argument('port', u'')
-        if not value:
-            return DEFAULT_PORT
+        return os.environ.get("SSH_PORT", 22)
+        # value = self.get_argument('port', u'')
+        # if not value:
+            # return DEFAULT_PORT
 
-        port = to_int(value)
-        if port is None or not is_valid_port(port):
-            raise InvalidValueError('Invalid port: {}'.format(value))
-        return port
+        # port = to_int(value)
+        # if port is None or not is_valid_port(port):
+            # raise InvalidValueError('Invalid port: {}'.format(value))
+        # return port
 
     def lookup_hostname(self, hostname, port):
         key = hostname if port == 22 else '[{}]:{}'.format(hostname, port)

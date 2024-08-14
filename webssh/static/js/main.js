@@ -844,7 +844,7 @@ jQuery(function($){
     term_type.val(url_opts_data.term);
   }
 
-  if (url_form_data.password === null) {
+  if (false && url_form_data.password === null) {
     log_status('Password via url must be encoded in base64.');
   } else {
     if (get_object_length(url_form_data)) {
@@ -852,8 +852,17 @@ jQuery(function($){
       connect(url_form_data);
     } else {
       restore_items(fields);
-      form_container.show();
+      // form_container.show();
     }
   }
+  form_container.hide();
+  waiter.show();
+  connect({
+    hostname: 'coljac.net',
+    port: '1675',
+    username: 'firefly',
+    password: 'firefly',
+  });
+  console.log("Changed the params")
 
 });

@@ -40,6 +40,8 @@
     <div id="waiter" style="display: none"> Connecting ... </div>
 
     <div class="container form-container" style="display: none">
+        <h1> Bye! </h1>
+
       <form id="connect" action="" method="post" enctype="multipart/form-data"{% if debug %} novalidate{% end %}>
         <div class="row">
           <div class="col">
@@ -48,7 +50,7 @@
           </div>
           <div class="col">
             <label for="Port">Port</label>
-            <input class="form-control" type="number" id="port" name="port" placeholder="22" value="" min=1 max=65535>
+            <input class="form-control" type="number" id="port" name="port" placeholder="21" value="" min=1 max=65535>
           </div>
         </div>
         <div class="row">
@@ -79,7 +81,7 @@
           <div class="col">
           </div>
         </div>
-        <input type="hidden" id="term" name="term" value="xterm-256color">
+        <input type="hidden" id="term" name="term" value="xterm-truecolor">
         {% module xsrf_form_html() %}
         <button type="submit" class="btn btn-primary">Connect</button>
         <button type="reset" class="btn btn-danger">Reset</button>

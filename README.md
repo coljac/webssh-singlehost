@@ -1,3 +1,6 @@
+This fork of [webssh](https://github.com/huashengdun/webssh/) changes the application slightly to automatically connect to a certain host, and only to that host.
+Edit `docker-compose.yaml` and put the SSH_HOST and SSH_PORT, then `docker compose up`.
+
 ## WebSSH
 
 [![python](https://github.com/huashengdun/webssh/actions/workflows/python.yml/badge.svg)](https://github.com/huashengdun/webssh/actions/workflows/python.yml)
